@@ -1,0 +1,22 @@
+{
+  "name": "SwiftStomp",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftStomp.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Romixery/SwiftStomp",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Romixery": "topcoder.romixery@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Romixery/SwiftStomp.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftStomp/Classes/**/*"
+}
