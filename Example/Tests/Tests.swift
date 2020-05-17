@@ -1,5 +1,4 @@
 import XCTest
-import SwiftStomp
 
 class Tests: XCTestCase {
     

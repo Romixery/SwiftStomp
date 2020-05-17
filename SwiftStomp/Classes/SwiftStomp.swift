@@ -11,7 +11,8 @@ import Starscream
 
 fileprivate let NULL_CHAR = String(format: "%C", arguments: [0x00])
 
-enum StompRequestFrame : String {
+// MARK: - Enums
+public enum StompRequestFrame : String {
     case connect = "CONNECT"
     case send = "SEND"
     case subscribe = "SUBSCRIBE"
@@ -24,7 +25,7 @@ enum StompRequestFrame : String {
     case disconnect = "DISCONNECT"
 }
 
-enum StompResponseFrame : String{
+public enum StompResponseFrame : String{
     case connected = "CONNECTED"
     case message = "MESSAGE"
     case receipt = "RECEIPT"
@@ -32,13 +33,13 @@ enum StompResponseFrame : String{
 }
 
 
-enum StompAckMode : String{
-    case clintIndividual = "client-individual"
+public enum StompAckMode : String{
+    case clientIndividual = "client-individual"
     case client = "client"
     case auto = "auto"
 }
 
-enum StompCommonHeader : String{
+public enum StompCommonHeader : String{
     case id = "id"
     case host = "host"
     case receipt = "receipt"
@@ -57,17 +58,17 @@ enum StompCommonHeader : String{
     case message = "message"
 }
 
-enum StompErrorType{
+public enum StompErrorType{
     case fromSocket
     case fromStomp
 }
 
-enum StompDisconnectType{
+public enum StompDisconnectType{
     case fromSocket
     case fromStomp
 }
 
-enum StompConnectType{
+public enum StompConnectType{
     case toSocketEndpoint
     case toStomp
 }
@@ -78,7 +79,8 @@ fileprivate enum StompLogType : String{
     case error = "ERROR"
 }
 
-class SwiftStomp{
+// MARK: - SwiftStomp
+public class SwiftStomp{
     
     fileprivate var host : URL
     fileprivate var connectionHeaders : [String : String]?
@@ -86,14 +88,17 @@ class SwiftStomp{
     fileprivate var acceptVersion = "1.1,1.2"
     fileprivate var isConnected = false
     
-    var delegate : SwiftStompDelegate?
-    var enableLogging = false
+    public var delegate : SwiftStompDelegate?
+    public var enableLogging = false
     
-    init (host : URL, headers : [String : String]? = nil){
+    public init (host : URL, headers : [String : String]? = nil){
         self.host = host
         self.connectionHeaders = headers
     }
-    
+}
+
+/// Public Operating functions
+public extension SwiftStomp{
     func connect(timeout : TimeInterval = 5, acceptVersion : String = "1.1,1.2"){
         var urlRequest = URLRequest(url: self.host)
         
@@ -350,7 +355,7 @@ fileprivate extension SwiftStomp{
 /// Web socket delegate
 extension SwiftStomp : WebSocketDelegate{
     
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected(let headers):
             stompLog(type: .info, message: "Scoket: connected: \(headers)")
@@ -393,7 +398,7 @@ extension SwiftStomp : WebSocketDelegate{
 }
 
 // MARK: - SwiftStomp delegate
-protocol SwiftStompDelegate{
+public protocol SwiftStompDelegate{
     
     func onConnect(swiftStomp : SwiftStomp, connectType : StompConnectType)
     
@@ -526,7 +531,7 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
 }
 
 // MARK: - Header builder
-class StompHeaderBuilder{
+public class StompHeaderBuilder{
     private var headers = [String : String]()
     
     static func add(key : StompCommonHeader, value : Any) -> StompHeaderBuilder{
@@ -549,7 +554,7 @@ class StompHeaderBuilder{
 }
 
 // MARK: - Errors
-class InvalidStompCommandError : Error{
+public class InvalidStompCommandError : Error{
     
     var localizedDescription: String {
         return "Invalid STOMP command"
