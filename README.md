@@ -7,6 +7,8 @@
 [![License](https://img.shields.io/cocoapods/l/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 
+![SwiftStomp](https://raw.githubusercontent.com/Romixery/SwiftStomp/assets/Example/SwiftStomp/Assets/SS-Logo.jpg)
+
 ## Fetures
 - Easy to setup, Very light-weight
 - Support all STOMP V1.2 frames. CONNECT, SUBSCRIBE, RECEIPT and ....
