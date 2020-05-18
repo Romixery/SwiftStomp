@@ -333,17 +333,22 @@ fileprivate extension SwiftStomp{
             self.delegate?.onError(swiftStomp: self, briefDescription: briefDescription, fullDescription: fullDescription, receiptId: receiptId, type: .fromStomp)
             
         case .connected:
+            self.isConnected = true
+            
             stompLog(type: .info, message: "Stomp: Connected")
             
             self.delegate?.onConnect(swiftStomp: self, connectType: .toStomp)
-            self.isConnected = true
-            
         default:
             stompLog(type: .info, message: "Stomp: Un-Processable content: \(text)")
         }
     }
     
     func sendFrame(frame : StompFrame<StompRequestFrame>, completion : (() -> ())? = nil){
+        if !isConnected && frame.name != .connect{
+            print("Unable to send frame \(frame.name.rawValue): Socket is not connected!")
+            return
+        }
+        
         let rawFrameToSend = frame.serialize()
         
         stompLog(type: .info, message: "Stomp: Sending...\n\(rawFrameToSend)\n")

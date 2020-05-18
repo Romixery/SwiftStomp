@@ -1,16 +1,23 @@
 PODS:
-  - SwiftStomp (0.1.0)
+  - Starscream (4.0.3)
+  - SwiftStomp (0.1.0):
+    - Starscream (~> 4.0.0)
 
 DEPENDENCIES:
   - SwiftStomp (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Starscream
 
 EXTERNAL SOURCES:
   SwiftStomp:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SwiftStomp: 4acf875ea408e0df43b4a1f940a7699c763879bc
+  Starscream: ef06f0961fff0880bca0604416d61141e4faca67
+  SwiftStomp: 8989eb57119ac9c2c1762a0f2bccdf88a11032c2
 
-PODFILE CHECKSUM: d9278a06f513f91e4a8990efbcf1b75e5a625d4b
+PODFILE CHECKSUM: 9d80d66f09641e8312023195b967f8cf282b8c6d
 
 COCOAPODS: 1.9.1

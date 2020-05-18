@@ -1,15 +1,15 @@
 {
   "name": "SwiftStomp",
   "version": "0.1.0",
-  "summary": "A short description of SwiftStomp.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "An elegant Stomp client for iOS.",
+  "description": "SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.\nIt's based on Starscream, an amazing Websocket library for swift.",
   "homepage": "https://github.com/Romixery/SwiftStomp",
   "license": {
-    "type": "MIT",
+    "type": "Apache Licens, Version 2.0",
     "file": "LICENSE"
   },
   "authors": {
-    "Romixery": "topcoder.romixery@gmail.com"
+    "Ahmad Daneshvar": "http://iamdaneshvar.com"
   },
   "source": {
     "git": "https://github.com/Romixery/SwiftStomp.git",
@@ -18,5 +18,12 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "SwiftStomp/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "SwiftStomp/Classes/**/*",
+  "dependencies": {
+    "Starscream": [
+      "~> 4.0.0"
+    ]
+  },
+  "swift_version": "5.0"
 }
