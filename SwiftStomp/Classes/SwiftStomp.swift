@@ -86,10 +86,13 @@ public class SwiftStomp{
     fileprivate var connectionHeaders : [String : String]?
     fileprivate var socket : WebSocket!
     fileprivate var acceptVersion = "1.1,1.2"
-    fileprivate var isConnected = false
+    fileprivate var connected = false
     
     public var delegate : SwiftStompDelegate?
     public var enableLogging = false
+    public var isConnected : Bool {
+        return self.connected
+    }
     
     public init (host : URL, headers : [String : String]? = nil){
         self.host = host
@@ -314,7 +317,7 @@ fileprivate extension SwiftStomp{
             self.delegate?.onReceipt(swiftStomp: self, receiptId: receiptId)
             
             if receiptId == "disconnect/safe"{
-                self.isConnected = false
+                self.connected = false
                 self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromStomp)
                 self.socket.disconnect()
             }
@@ -333,7 +336,7 @@ fileprivate extension SwiftStomp{
             self.delegate?.onError(swiftStomp: self, briefDescription: briefDescription, fullDescription: fullDescription, receiptId: receiptId, type: .fromStomp)
             
         case .connected:
-            self.isConnected = true
+            self.connected = true
             
             stompLog(type: .info, message: "Stomp: Connected")
             
@@ -344,7 +347,7 @@ fileprivate extension SwiftStomp{
     }
     
     func sendFrame(frame : StompFrame<StompRequestFrame>, completion : (() -> ())? = nil){
-        if !isConnected && frame.name != .connect{
+        if !connected && frame.name != .connect{
             print("Unable to send frame \(frame.name.rawValue): Socket is not connected!")
             return
         }
@@ -391,11 +394,11 @@ extension SwiftStomp : WebSocketDelegate{
         case .cancelled:
             stompLog(type: .info, message: "Socket: Cancelled")
             
-            isConnected = false
+            connected = false
         case .error(let error):
             stompLog(type: .error, message: "Socket: Error: \(error.debugDescription)")
             
-            isConnected = false
+            connected = false
             self.delegate?.onError(swiftStomp: self, briefDescription: "Socket Error", fullDescription: error?.localizedDescription, receiptId: nil, type: .fromSocket)
         }
     }
