@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftStomp'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'An elegant Stomp client for iOS.'
   s.description      = <<-DESC
   SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                          DESC
  
   s.homepage         = 'https://github.com/Romixery/SwiftStomp'
-  s.license          = { :type => 'Apache Licens, Version 2.0', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Romixery' => 'topcoder.romixery@gmail.com' }
   s.source           = { :git => 'https://github.com/Romixery/SwiftStomp.git', :tag => s.version.to_s }
   s.author       = {'Ahmad Daneshvar' => 'http://iamdaneshvar.com'}

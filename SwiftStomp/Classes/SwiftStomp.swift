@@ -146,7 +146,7 @@ public extension SwiftStomp{
             .add(key: .id, value: destination)
             .get
         
-        self.sendFrame(frame: StompFrame(name: .subscribe, headers: headers))
+        self.sendFrame(frame: StompFrame(name: .unsubscribe, headers: headers))
     }
     
     func send(body : String, to : String, receiptId : String? = nil, headers : [String : String]? = nil){
