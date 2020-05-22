@@ -24,24 +24,61 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         initStomp()
+        registerObservers()
     }
     
     private func initStomp(){
-        let url = URL(string: "ws://192.168.88.252:8081/socket")!
+        let url = URL(string: "ws://192.168.1.14:8081/socket")!
         
-        self.swiftStomp = SwiftStomp(host: url, headers: ["Authorization" : "bearer 4b0ff3fb-b3ac-4832-9f10-9b6c76005aac"])
+        self.swiftStomp = SwiftStomp(host: url, headers: ["Authorization" : "Bearer befdc8b8-7b9c-4962-8ccb-28a7b5dd580f"])
         self.swiftStomp.enableLogging = true
         self.swiftStomp.delegate = self
+        self.swiftStomp.autoReconnect = true
     }
+    
+    private func registerObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+    }
+    /**
+     * Observer functions
+     */
+    @objc func appDidBecomeActive(notification : Notification){
+        if !self.swiftStomp.isConnected{
+            self.swiftStomp.connect()
+        }
+    }
+    
+    @objc func appWillResignActive(notication : Notification){
+        if self.swiftStomp.isConnected{
+            self.swiftStomp.disconnect(force: true)
+        }
+    }
+    
+    /**
+     * IBActions
+     */
 
     @IBAction func triggerConnect(_ sender: Any) {
-        self.swiftStomp.connect(timeout: 10)
+        if !self.swiftStomp.isConnected{
+            self.swiftStomp.connect()
+        }
+        
     }
+    
+    @IBAction func triggerDisconnect(_ sender: Any) {
+        if self.swiftStomp.isConnected{
+            self.swiftStomp.disconnect()
+        }
+    }
+    
     
     @IBAction func triggerSend(_ sender: Any) {
         messageIndex += 1
-        Int.random(in: 0..<1000)
         swiftStomp.send(body: self.messageTextView.text, to: destinationTextField.text!, receiptId: "msg-\(messageIndex)", headers: [:])
+        
+        self.view.endEditing(true)
     }
     
 }
@@ -55,7 +92,9 @@ extension ViewController : SwiftStompDelegate{
             print("Connected to stomp")
             
             //** Subscribe to topics or queues just after connect to the stomp!
-            swiftStomp.subscribe(to: "/topic/greeting", mode: .clientIndividual)
+            swiftStomp.subscribe(to: "/topic/greeting")
+            swiftStomp.subscribe(to: "/topic/greeting2")
+            
         }
     }
     
