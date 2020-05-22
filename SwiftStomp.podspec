@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftStomp'
-  s.version          = '0.1.2'
+  s.version          = '0.2.0'
   s.summary          = 'An elegant Stomp client for iOS.'
   s.description      = <<-DESC
   SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.
@@ -22,7 +22,9 @@ Pod::Spec.new do |s|
   s.author       = {'Ahmad Daneshvar' => 'http://iamdaneshvar.com'}
   s.source       = { :git => 'https://github.com/Romixery/SwiftStomp.git',  :tag => "#{s.version}"}
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
+  s.osx.deployment_target = "10.10"
+  s.tvos.deployment_target  = "9.0"
   s.swift_version    = '5.0'
   s.source_files = 'SwiftStomp/Classes/**/*'
   
@@ -31,6 +33,6 @@ Pod::Spec.new do |s|
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Starscream', '~> 4.0.0'
+  s.dependency 'Starscream', '~> 4.0.3'
+  s.dependency 'ReachabilitySwift', '~> 5.0.0'
 end

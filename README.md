@@ -2,7 +2,7 @@
 
 ## An elegent Stomp client for swift, Base on Starscream websocket library.
 
-[![CI Status](https://img.shields.io/travis/Romixery/SwiftStomp.svg?style=flat)](https://travis-ci.org/Romixery/SwiftStomp)
+<!-- [![CI Status](https://img.shields.io/travis/Romixery/SwiftStomp.svg?style=flat)](https://travis-ci.org/Romixery/SwiftStomp) -->
 [![Version](https://img.shields.io/cocoapods/v/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 [![License](https://img.shields.io/cocoapods/l/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
@@ -14,6 +14,7 @@
 - Support all STOMP V1.2 frames. CONNECT, SUBSCRIBE, RECEIPT and ....
 - Auto object serialize using native JSON `Encoder`.
 - Send and receive `Data` and `Text`
+- Auto reconnect
 - Logging
 
 ## Usage
@@ -23,10 +24,11 @@ Quick initialize with minimum requirements:
 ```Swift
 let url = URL(string: "ws://192.168.88.252:8081/socket")!
         
-self.swiftStomp = SwiftStomp(host: url) ///< Create instance
-self.swiftStomp.delegate = self ///< Set delegate
+self.swiftStomp = SwiftStomp(host: url) //< Create instance
+self.swiftStomp.delegate = self //< Set delegate
+self.swiftStomp.autoReconnect = true //< Auto reconnect on error or cancel
 
-self.swiftStomp.connect() ///< Connect
+self.swiftStomp.connect() //< Connect
 ```
 
 ### Delegate
@@ -48,7 +50,12 @@ Full `Connect` signature:
 ```Swift
 self.swiftStomp.connect(timeout: 5.0, acceptVersion: "1.1,1.2")
 ```
-
+If you want to reconnect after any un-expected disconnections, enable `autoReconnect` property.
+```swift
+self.swiftStomp.autoReconnect = true
+```
+<b><i>Notice:</b> If you disconnect manually using `disconnect()` function, and `autoReconnect` is enable, socket will try to reconnect after disconnection. If this is not thing you want, please disable `autoReconnect` before call the `disconnect()`.</i>
+ 
 ### Subscription
 Full `Subsribe` signature. Please notice to subscribe only when you ensure connected to the STOMP. I suggest do it in the `onConnect` delegate with `connectType == .toStomp`
 
@@ -62,7 +69,27 @@ You have full controll for sending messages. Full signature is as follows:
 swiftStomp.send(body: "This is message's text body", to: "/app/greeting", receiptId: "msg-\(Int.random(in: 0..<1000))", headers: [:])
 ```
 
-### Example
+### Connection Status check
+You can check the status of the SwiftStomp by using `connectionStatus` property:
+
+```swift
+switch self.swiftStomp.connectionStatus {
+case .connecting:
+    print("Connecting to the server...")
+case .socketConnected:
+    print("Scoket is connected but STOMP as sub-protocol is not connected yet.")
+case .fullyConnected:
+    print("Both socket and STOMP is connected. Ready for messaging...")
+case .socketDisconnected:
+    print("Socket is disconnected")
+}
+```
+
+
+## Test Environment
+This example was test with a <b>[Spring Boot](https://spring.io)</b> websocket server with <b>[RobbitMQ](https://www.rabbitmq.com/)</b> as an external message broker.
+
+## Example
 Please refer to the Example for more functionalities
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

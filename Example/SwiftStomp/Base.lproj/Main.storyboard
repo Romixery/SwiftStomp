@@ -19,20 +19,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kL-Dg-EaL">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qt6-Uy-RaQ">
                                 <rect key="frame" x="12" y="47" width="351" height="30"/>
-                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="4Iz-gt-Byk"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Connect"/>
-                                <connections>
-                                    <action selector="triggerConnect:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cBg-Th-9sp"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kL-Dg-EaL">
+                                        <rect key="frame" x="0.0" y="0.0" width="170.5" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="4Iz-gt-Byk"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="triggerConnect:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cBg-Th-9sp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcN-FK-Vdh">
+                                        <rect key="frame" x="180.5" y="0.0" width="170.5" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="b6U-hH-mbq"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Disconnect"/>
+                                        <connections>
+                                            <action selector="triggerDisconnect:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="N8f-Wh-5pP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0n-aA-3rT">
-                                <rect key="frame" x="12" y="223" width="351" height="30"/>
+                                <rect key="frame" x="12" y="222.5" width="351" height="30"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="SEND"/>
@@ -56,7 +73,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFh-pH-oog">
-                                <rect key="frame" x="12" y="96" width="23.5" height="21"/>
+                                <rect key="frame" x="12" y="96.5" width="23.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -66,18 +83,18 @@
                         <constraints>
                             <constraint firstItem="vuv-m0-RmN" firstAttribute="leading" secondItem="uFh-pH-oog" secondAttribute="trailing" constant="10" id="2dw-Li-Goo"/>
                             <constraint firstItem="qJS-Ho-qQI" firstAttribute="top" secondItem="vuv-m0-RmN" secondAttribute="bottom" constant="10" id="5qn-ko-JMC"/>
+                            <constraint firstAttribute="trailing" secondItem="Qt6-Uy-RaQ" secondAttribute="trailing" constant="12" id="9cY-ua-5id"/>
                             <constraint firstItem="vuv-m0-RmN" firstAttribute="centerY" secondItem="uFh-pH-oog" secondAttribute="centerY" id="DJ6-EQ-TEt"/>
-                            <constraint firstItem="uFh-pH-oog" firstAttribute="leading" secondItem="3kL-Dg-EaL" secondAttribute="leading" id="TyM-vL-YkV"/>
+                            <constraint firstItem="Qt6-Uy-RaQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="12" id="J7A-CU-zBM"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="trailing" secondItem="qJS-Ho-qQI" secondAttribute="trailing" id="WRN-Aa-aKV"/>
-                            <constraint firstItem="3kL-Dg-EaL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="12" id="YMX-tu-fET"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="leading" secondItem="qJS-Ho-qQI" secondAttribute="leading" id="Yp5-g9-15a"/>
+                            <constraint firstItem="vuv-m0-RmN" firstAttribute="trailing" secondItem="Qt6-Uy-RaQ" secondAttribute="trailing" id="cWq-ef-zpF"/>
+                            <constraint firstItem="Qt6-Uy-RaQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="euJ-fX-6rb"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="top" secondItem="qJS-Ho-qQI" secondAttribute="bottom" constant="10" id="iyC-Ic-Waq"/>
-                            <constraint firstItem="3kL-Dg-EaL" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="mfT-05-DIm"/>
-                            <constraint firstAttribute="trailing" secondItem="3kL-Dg-EaL" secondAttribute="trailing" constant="12" id="pOO-vp-Ds7"/>
+                            <constraint firstItem="vuv-m0-RmN" firstAttribute="top" secondItem="Qt6-Uy-RaQ" secondAttribute="bottom" constant="12.5" id="u0D-Li-Ezj"/>
                             <constraint firstItem="qJS-Ho-qQI" firstAttribute="leading" secondItem="uFh-pH-oog" secondAttribute="leading" id="uxA-V4-gJv"/>
                             <constraint firstItem="qJS-Ho-qQI" firstAttribute="trailing" secondItem="vuv-m0-RmN" secondAttribute="trailing" id="vcI-rC-7XV"/>
-                            <constraint firstItem="vuv-m0-RmN" firstAttribute="trailing" secondItem="3kL-Dg-EaL" secondAttribute="trailing" id="wRX-hV-DAY"/>
-                            <constraint firstItem="uFh-pH-oog" firstAttribute="top" secondItem="3kL-Dg-EaL" secondAttribute="bottom" constant="19" id="z0R-8w-hlu"/>
+                            <constraint firstItem="uFh-pH-oog" firstAttribute="leading" secondItem="Qt6-Uy-RaQ" secondAttribute="leading" id="zhA-Bt-7Zj"/>
                         </constraints>
                     </view>
                     <connections>
