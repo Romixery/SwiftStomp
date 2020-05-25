@@ -1,6 +1,6 @@
 # SwiftStomp
 
-## An elegent Stomp client for swift, Base on Starscream websocket library.
+## An elegent Stomp client for swift, Base on [Starscream](https://github.com/daltoniam/Starscream) websocket library.
 
 <!-- [![CI Status](https://img.shields.io/travis/Romixery/SwiftStomp.svg?style=flat)](https://travis-ci.org/Romixery/SwiftStomp) -->
 [![Version](https://img.shields.io/cocoapods/v/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
@@ -87,7 +87,7 @@ case .socketDisconnected:
 
 
 ## Test Environment
-This example was test with a <b>[Spring Boot](https://spring.io)</b> websocket server with <b>[RobbitMQ](https://www.rabbitmq.com/)</b> as an external message broker.
+This example was test with a <b>[Spring Boot](https://spring.io)</b> websocket server with <b>[RabbitMQ](https://www.rabbitmq.com/)</b> as an external message broker.
 
 ## Example
 Please refer to the Example for more functionalities
