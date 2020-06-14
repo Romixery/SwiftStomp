@@ -28,9 +28,9 @@ class ViewController: UIViewController {
     }
     
     private func initStomp(){
-        let url = URL(string: "ws://192.168.1.14:8081/socket")!
+        let url = URL(string: "ws://192.168.1.6:8081/socket")!
         
-        self.swiftStomp = SwiftStomp(host: url, headers: ["Authorization" : "Bearer befdc8b8-7b9c-4962-8ccb-28a7b5dd580f"])
+        self.swiftStomp = SwiftStomp(host: url, headers: ["Authorization" : "Bearer 5c09614a-22dc-4ccd-89c1-5c78338f45e9"])
         self.swiftStomp.enableLogging = true
         self.swiftStomp.delegate = self
         self.swiftStomp.autoReconnect = true
@@ -106,7 +106,7 @@ extension ViewController : SwiftStompDelegate{
         }
     }
     
-    func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String) {
+    func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String, headers : [String : String]) {
         
         if let message = message as? String{
             print("Message with id `\(messageId)` received at destination `\(destination)`:\n\(message)")
@@ -123,9 +123,9 @@ extension ViewController : SwiftStompDelegate{
     
     func onError(swiftStomp: SwiftStomp, briefDescription: String, fullDescription: String?, receiptId: String?, type: StompErrorType) {
         if type == .fromSocket{
-            print("Socket error occured! [\(briefDescription)]")
+            print("Socket error occurred! [\(briefDescription)]")
         } else if type == .fromStomp{
-            print("Stomp error occured! [\(briefDescription)]")
+            print("Stomp error occurred! [\(briefDescription)] : \(String(describing: fullDescription))")
         } else {
             print("Unknown error occured!")
         }

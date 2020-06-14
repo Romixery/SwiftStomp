@@ -374,7 +374,7 @@ fileprivate extension SwiftStomp{
             let messageId = frame.getCommonHeader(.messageId) ?? ""
             let destination = frame.getCommonHeader(.destination) ?? ""
             
-            self.delegate?.onMessageReceived(swiftStomp: self, message: frame.body, messageId: messageId, destination: destination)
+            self.delegate?.onMessageReceived(swiftStomp: self, message: frame.body, messageId: messageId, destination: destination, headers: frame.headers)
             
         case .receipt:
             guard let receiptId = frame.getCommonHeader(.receiptId) else {
@@ -511,7 +511,7 @@ public protocol SwiftStompDelegate{
     
     func onDisconnect(swiftStomp : SwiftStomp, disconnectType : StompDisconnectType)
     
-    func onMessageReceived(swiftStomp : SwiftStomp, message : Any?, messageId : String, destination : String)
+    func onMessageReceived(swiftStomp : SwiftStomp, message : Any?, messageId : String, destination : String, headers : [String : String])
     
     func onReceipt(swiftStomp : SwiftStomp, receiptId : String)
     

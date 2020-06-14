@@ -38,7 +38,7 @@ func onConnect(swiftStomp : SwiftStomp, connectType : StompConnectType)
     
 func onDisconnect(swiftStomp : SwiftStomp, disconnectType : StompDisconnectType)
 
-func onMessageReceived(swiftStomp : SwiftStomp, message : Any?, messageId : String, destination : String)
+func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String, headers : [String : String])
 
 func onReceipt(swiftStomp : SwiftStomp, receiptId : String)
 
