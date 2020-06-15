@@ -532,7 +532,10 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
     convenience init <X : Encodable>(name : T, headers : [String : String] = [:], encodableBody : X){
         self.init(name: name, headers: headers)
         
-        if let jsonData = try? JSONEncoder().encode(encodableBody){
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        
+        if let jsonData = try? jsonEncoder.encode(encodableBody){
             self.body = String(data: jsonData, encoding: .utf8)
             self.headers[StompCommonHeader.contentType.rawValue] = "application/json;charset=UTF-8"
         }
