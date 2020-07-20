@@ -219,10 +219,10 @@ public extension SwiftStomp{
         self.sendFrame(frame: StompFrame(name: .send, headers: headers, dataBody: body))
     }
     
-    func send <T : Encodable> (body : T, to : String, receiptId : String? = nil, headers : [String : String]? = nil){
+    func send <T : Encodable> (body : T, to : String, receiptId : String? = nil, headers : [String : String]? = nil, jsonDateEncodingStrategy : JSONEncoder.DateEncodingStrategy = .iso8601){
         let headers = prepareHeadersForSend(to: to, receiptId: receiptId, headers: headers)
         
-        self.sendFrame(frame: StompFrame(name: .send, headers: headers, encodableBody: body))
+        self.sendFrame(frame: StompFrame(name: .send, headers: headers, encodableBody: body, jsonDateEncodingStrategy: jsonDateEncodingStrategy))
     }
     
     func ack(messageId : String, transaction : String? = nil){
@@ -539,11 +539,11 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
         self.headers = headers
     }
     
-    convenience init <X : Encodable>(name : T, headers : [String : String] = [:], encodableBody : X){
+    convenience init <X : Encodable>(name : T, headers : [String : String] = [:], encodableBody : X, jsonDateEncodingStrategy : JSONEncoder.DateEncodingStrategy = .iso8601){
         self.init(name: name, headers: headers)
         
         let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = .iso8601
+        jsonEncoder.dateEncodingStrategy = jsonDateEncodingStrategy
         
         if let jsonData = try? jsonEncoder.encode(encodableBody){
             self.body = String(data: jsonData, encoding: .utf8)
