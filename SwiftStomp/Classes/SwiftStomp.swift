@@ -486,8 +486,12 @@ extension SwiftStomp : WebSocketDelegate{
             
         case .viabilityChanged(let viability):
             stompLog(type: .info, message: "Socket: Viability changed: \(viability)")
+            self.delegate?.onSocketEvent(eventName: "viabilityChangedTo\(viability)", description: "Socket viability changed")
+            
         case .reconnectSuggested(let suggested):
             stompLog(type: .info, message: "Socket: Reconnect suggested: \(suggested)")
+            
+            self.delegate?.onSocketEvent(eventName: "reconnectSuggested", description: "Socket Reconnect suggested")
 
             if suggested{
                 self.connect()
@@ -496,6 +500,8 @@ extension SwiftStomp : WebSocketDelegate{
             self.status = .socketDisconnected
 
             stompLog(type: .info, message: "Socket: Cancelled")
+            
+            self.delegate?.onSocketEvent(eventName: "cancelled", description: "Socket cancelled")
 
             if self.autoReconnect{
                 self.scheduleConnector()
@@ -526,6 +532,8 @@ public protocol SwiftStompDelegate{
     func onReceipt(swiftStomp : SwiftStomp, receiptId : String)
     
     func onError(swiftStomp : SwiftStomp, briefDescription : String, fullDescription : String?, receiptId : String?, type : StompErrorType)
+    
+    func onSocketEvent(eventName : String, description : String)
 }
 
 // MARK: - Stomp Frame Class

@@ -131,6 +131,8 @@ extension ViewController : SwiftStompDelegate{
         }
     }
     
-    
+    func onSocketEvent(eventName: String, description: String) {
+        print("Socket event occured: \(eventName) => \(description)")
+    }
 }
 
