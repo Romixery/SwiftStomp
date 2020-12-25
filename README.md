@@ -100,12 +100,20 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
+### CocoaPods
 SwiftStomp is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'SwiftStomp'
 ```
+### Swift Package Manager
+From Xcode 11, you can use [Swift Package Manager](https://swift.org/package-manager/) to add SwiftStomp to your project.
+
+1. Select File > Swift Packages > Add Package Dependency. Enter `https://github.com/Romixery/SwiftStomp.git` in the "Choose Package Repository" dialog.
+2. In the next page, specify the version resolving rule as "Up to Next Major" with "1.0.4" as its earliest version.
+3. After Xcode checking out the source and resolving the version, you can choose the "SwiftStomp" library and add it to your app target.
+
 
 ## Author
 
