@@ -37,3 +37,6 @@ Carthage/Build
 Pods/
 Example/Pods/Starscream
 Podfile.lock
+
+Package.resolved
+.swiftpm
