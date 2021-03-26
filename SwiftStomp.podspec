@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftStomp'
-  s.version          = '1.0.4'
+  s.version          = '1.0.5'
   s.summary          = 'An elegant Stomp client for iOS.'
   s.description      = <<-DESC
   SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.
