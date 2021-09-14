@@ -274,6 +274,11 @@ public extension SwiftStomp{
         
         self.sendFrame(frame: StompFrame(name: .abort, headers: headers))
     }
+    
+    func sendPingCommand(data: Data = Data(), completion: (() -> Void)? = nil) {
+        self.socket.write(ping: data, completion: completion)
+    }
+    
 }
 
 /// Helper functions
