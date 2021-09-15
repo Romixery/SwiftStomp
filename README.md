@@ -85,6 +85,13 @@ case .socketDisconnected:
 }
 ```
 
+### Send Ping
+You control for sending WebSocket 'Ping' messages. Full signature is as follows:
+```swift
+func sendPingCommand(data: Data = Data(), completion: (() -> Void)? = nil)
+```
+You will receive 'Pong' message as a response.
+
 
 ## Test Environment
 This example was test with a <b>[Spring Boot](https://spring.io)</b> websocket server with <b>[RabbitMQ](https://www.rabbitmq.com/)</b> as an external message broker.
