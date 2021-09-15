@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  SwiftStomp
 //
-//  Created by Romixery on 05/17/2020.
-//  Copyright (c) 2020 Romixery. All rights reserved.
+//  Created by Romixery (Ahmad Daneshvar) on 05/17/2020.
+//  Copyright (c) 2021 Romixery. All rights reserved.
 //
 
 import UIKit
@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         self.swiftStomp.enableLogging = true
         self.swiftStomp.delegate = self
         self.swiftStomp.autoReconnect = true
+        
+        self.swiftStomp.enableAutoPing()
     }
     
     private func registerObservers(){

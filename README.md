@@ -54,7 +54,7 @@ If you want to reconnect after any un-expected disconnections, enable `autoRecon
 ```swift
 self.swiftStomp.autoReconnect = true
 ```
-<b><i>Notice:</b> If you disconnect manually using `disconnect()` function, and `autoReconnect` is enable, socket will try to reconnect after disconnection. If this is not thing you want, please disable `autoReconnect` before call the `disconnect()`.</i>
+> <b><i>Notice:</b> If you disconnect manually using `disconnect()` function, and `autoReconnect` is enable, socket will try to reconnect after disconnection. If this is not thing you want, please disable `autoReconnect` before call the `disconnect()`.</i>
  
 ### Subscription
 Full `Subsribe` signature. Please notice to subscribe only when you ensure connected to the STOMP. I suggest do it in the `onConnect` delegate with `connectType == .toStomp`
@@ -85,12 +85,23 @@ case .socketDisconnected:
 }
 ```
 
-### Send Ping
+### Manual Pinging
 You control for sending WebSocket 'Ping' messages. Full signature is as follows:
 ```swift
-func sendPingCommand(data: Data = Data(), completion: (() -> Void)? = nil)
+func ping(data: Data = Data(), completion: (() -> Void)? = nil)
 ```
 You will receive 'Pong' message as a response.
+
+### Auto Pinging
+If you want to ensure your connection will still alive, you can use 'Auto Ping' feature. Full signature is as follows:
+```swift
+func enableAutoPing(pingInterval: TimeInterval = 10)
+```
+The 'autoPing' feature, will send `ping` command to websocket server, after `pingInterval` time ellapsed from last sent `sendFrame` commands (ex: `connect`, `ack`, `send` ....).
+
+> <b><i>Notice:</b> Auto ping is disabled by default. So you have to enable it after you connected to the server. Also please consider, if you disconnect from the server or call `disconnect()` explicitly, you must call `enableAutoPing()` again.</i>
+
+To disable the 'Auto Ping' functionality, use `disableAutoPing()`.
 
 
 ## Test Environment

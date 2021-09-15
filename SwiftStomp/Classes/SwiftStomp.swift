@@ -100,6 +100,11 @@ public class SwiftStomp{
     fileprivate var reachability : Reachability!
     fileprivate var hostIsReachabile = true
     
+    /// Auto ping peroperties
+    fileprivate var pingTimer : Timer?
+    fileprivate var pingInterval: TimeInterval = 10 //< 10 Seconds
+    fileprivate var autoPingEnabled = false
+    
     public var delegate : SwiftStompDelegate?
     public var enableLogging = false
     public var isConnected : Bool {
@@ -170,6 +175,7 @@ public extension SwiftStomp{
     
     func disconnect(force : Bool = false){
         
+        self.disableAutoPing()
         self.invalidateConnector()
         
         if !force{ //< Send disconnect first over STOMP
@@ -275,8 +281,44 @@ public extension SwiftStomp{
         self.sendFrame(frame: StompFrame(name: .abort, headers: headers))
     }
     
-    func sendPingCommand(data: Data = Data(), completion: (() -> Void)? = nil) {
+    
+    /// Send ping command to keep connection alive
+    /// - Parameters:
+    ///   - data: Date to send over Web socket
+    ///   - completion: Completion block
+    func ping(data: Data = Data(), completion: (() -> Void)? = nil) {
+        
+        //** Check socket status
+        if self.status != .fullyConnected && self.status != .socketConnected{
+            self.stompLog(type: .info, message: "Stomp: Unable to send `ping`. Socket is not connected!")
+            return
+        }
+        
         self.socket.write(ping: data, completion: completion)
+        
+        self.stompLog(type: .info, message: "Stomp: Ping sent!")
+        
+        //** Reset ping timer
+        self.resetPingTimer()
+    }
+    
+    
+    /// Enable auto ping command to ensure connection will keep alive and prevent connection to stay idle
+    /// - Notice: Please be care if you used `disconnect`, you have to re-enable the timer again.
+    /// - Parameter pingInterval: Ping command send interval
+    func enableAutoPing(pingInterval: TimeInterval = 10){
+        self.pingInterval = pingInterval
+        self.autoPingEnabled = true
+        
+        //** Reset ping timer
+        self.resetPingTimer()
+    }
+    
+    
+    /// Disable auto ping function
+    func disableAutoPing(){
+        self.autoPingEnabled = false
+        self.pingTimer?.invalidate()
     }
     
 }
@@ -453,6 +495,25 @@ fileprivate extension SwiftStomp{
         stompLog(type: .info, message: "Stomp: Sending...\n\(rawFrameToSend)\n")
         
         self.socket.write(string: rawFrameToSend, completion: completion)
+        
+        //** Reset ping timer
+        self.resetPingTimer()
+    }
+    
+    func resetPingTimer(){
+        if !autoPingEnabled{
+            return
+        }
+        
+        //** Invalidate if timer is valid
+        if let t = self.pingTimer, t.isValid{
+            t.invalidate()
+        }
+        
+        //** Schedule the ping timer
+        self.pingTimer = Timer.scheduledTimer(withTimeInterval: self.pingInterval, repeats: true, block: { _ in
+            self.ping()
+        })
     }
 }
 
@@ -476,6 +537,9 @@ extension SwiftStomp : WebSocketDelegate{
             stompLog(type: .info, message: "Socket: Disconnected: \(reason) with code: \(code)")
             
             self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromSocket)
+            
+            //** Disable auto ping
+            self.disableAutoPing()
             
         case .text(let string):
             stompLog(type: .info, message: "Socket: Received text")
