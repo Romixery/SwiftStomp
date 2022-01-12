@@ -105,7 +105,8 @@ public class SwiftStomp{
     fileprivate var pingInterval: TimeInterval = 10 //< 10 Seconds
     fileprivate var autoPingEnabled = false
     
-    public var delegate : SwiftStompDelegate?
+    /// It's not a weak delegate - please make sure you avoid retain cycles!
+    public var delegate : SwiftStompDelegate? // WARNING - It's not a weak delegate!
     public var enableLogging = false
     public var isConnected : Bool {
         return self.status == .fullyConnected
@@ -128,13 +129,13 @@ public class SwiftStomp{
     private func initReachability(){
         
         reachability = try! Reachability(queueQoS: .utility, targetQueue: DispatchQueue(label: "swiftStomp.reachability"), notificationQueue: .global())
-        reachability.whenReachable = { _ in
-            self.stompLog(type: .info, message: "Network IS reachable")
-            self.hostIsReachabile = true
+        reachability.whenReachable = { [weak self] _ in
+            self?.stompLog(type: .info, message: "Network IS reachable")
+            self?.hostIsReachabile = true
         }
-        reachability.whenUnreachable = { _ in
-            self.stompLog(type: .info, message: "Network IS NOT reachable")
-            self.hostIsReachabile = false
+        reachability.whenUnreachable = { [weak self] _ in
+            self?.stompLog(type: .info, message: "Network IS NOT reachable")
+            self?.hostIsReachabile = false
         }
     }
 }
@@ -361,7 +362,10 @@ fileprivate extension SwiftStomp{
 
         try? self.reachability.startNotifier()
 
-        self.reconnectScheduler = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { (timer) in
+        self.reconnectScheduler = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self] (timer) in
+            guard let self = self else {
+                return
+            }
             if !self.hostIsReachabile{
                 self.stompLog(type: .info, message: "Network is not reachable. Ignore connecting!")
                 return
@@ -511,8 +515,8 @@ fileprivate extension SwiftStomp{
         }
         
         //** Schedule the ping timer
-        self.pingTimer = Timer.scheduledTimer(withTimeInterval: self.pingInterval, repeats: true, block: { _ in
-            self.ping()
+        self.pingTimer = Timer.scheduledTimer(withTimeInterval: self.pingInterval, repeats: true, block: { [weak self] _ in
+            self?.ping()
         })
     }
 }
@@ -757,3 +761,4 @@ public class InvalidStompCommandError : Error{
         return "Invalid STOMP command"
     }
 }
+
