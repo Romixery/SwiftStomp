@@ -523,8 +523,7 @@ fileprivate extension SwiftStomp{
 
 /// Web socket delegate
 extension SwiftStomp : WebSocketDelegate{
-    
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         switch event {
         case .connected(let headers):
             self.status = .socketConnected
@@ -588,6 +587,10 @@ extension SwiftStomp : WebSocketDelegate{
             if self.autoReconnect{
                 self.scheduleConnector()
             }
+        case .peerClosed:
+            stompLog(type: .info, message: "Socket: Peer closed")
+        @unknown default:
+            stompLog(type: .info, message: "Socket: Unexpected event kind: \(String(describing: event))")
         }
     }
     
