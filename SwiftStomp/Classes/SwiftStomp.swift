@@ -91,7 +91,8 @@ fileprivate enum StompLogType : String{
 public class SwiftStomp{
     
     fileprivate var host : URL
-    fileprivate var connectionHeaders : [String : String]?
+    fileprivate var httpConnectionHeaders : [String : String]?
+    fileprivate var stompConnectionHeaders : [String : String]?
     fileprivate var socket : WebSocket!
     fileprivate var acceptVersion = "1.1,1.2"
     fileprivate var status : StompConnectionStatus = .socketDisconnected
@@ -117,11 +118,12 @@ public class SwiftStomp{
     public var callbacksThread : DispatchQueue?
     public var autoReconnect = false
     
-    public init (host : URL, headers : [String : String]? = nil){
+    public init (host : URL, headers : [String : String]? = nil, httpConnectionHeaders : [String : String]? = nil){
         self.host = host
-        self.connectionHeaders = headers
         
         
+        self.stompConnectionHeaders = headers
+        self.httpConnectionHeaders = httpConnectionHeaders
         /// Configure reachability
         self.initReachability()
     }
@@ -159,8 +161,13 @@ public extension SwiftStomp{
         
         //** Time interval
         urlRequest.timeoutInterval = timeout
-        
-        
+
+        if let httpConnectionHeaders {
+            for header in httpConnectionHeaders {
+                urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+            }
+        }
+
         //** Connect
         self.socket = WebSocket(request: urlRequest)
         
@@ -395,8 +402,8 @@ fileprivate extension SwiftStomp{
             .get
         
         //** Append connection headers
-        if let connectionHeaders = self.connectionHeaders{
-            for (hKey, hVal) in connectionHeaders{
+        if let stompConnectionHeaders = self.stompConnectionHeaders{
+            for (hKey, hVal) in stompConnectionHeaders{
                 headers[hKey] = hVal
             }
         }
