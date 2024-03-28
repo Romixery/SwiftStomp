@@ -694,7 +694,7 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
         var lines = frame.components(separatedBy: "\n")
         
         //** Remove first if was empty string
-        if lines.first == ""{
+        if let firstLine = lines.first, firstLine.isEmpty {
             lines.removeFirst()
         }
         
@@ -707,10 +707,11 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
             throw InvalidStompCommandError()
         }
         
+        //** Remove Command
         lines.removeFirst()
         
         //** Parse Headers
-        while let line = lines.first, line != ""{
+        while let line = lines.first, !line.isEmpty {
             let headerParts = line.components(separatedBy: ":")
             
             if headerParts.count != 2{
@@ -721,7 +722,12 @@ fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
             
             lines.removeFirst()
         }
-        
+
+        //** Remove the blank line between the headers and body
+        if let firstLine = lines.first, firstLine.isEmpty {
+            lines.removeFirst()
+        }
+
         //** Parse body
         var body = lines.joined(separator: "\n")
         
