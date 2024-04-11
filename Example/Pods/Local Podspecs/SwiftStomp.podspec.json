@@ -2,7 +2,7 @@
   "name": "SwiftStomp",
   "version": "0.1.0",
   "summary": "An elegant Stomp client for iOS.",
-  "description": "SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.\nIt's based on Starscream, an amazing Websocket library for swift.",
+  "description": "SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.\nIt's based on URLSessionWebSocketTask.",
   "homepage": "https://github.com/Romixery/SwiftStomp",
   "license": {
     "type": "MIT License",
@@ -21,9 +21,6 @@
   "swift_versions": "5.0",
   "source_files": "SwiftStomp/Classes/**/*",
   "dependencies": {
-    "Starscream": [
-      "~> 4.0.0"
-    ]
   },
   "swift_version": "5.0"
 }

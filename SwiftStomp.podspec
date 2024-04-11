@@ -34,6 +34,5 @@ Pod::Spec.new do |s|
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.dependency 'Starscream', '~> 4.0.4'
   s.dependency 'ReachabilitySwift', '~> 5.0.0'
 end
