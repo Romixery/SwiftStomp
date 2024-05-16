@@ -546,11 +546,7 @@ extension SwiftStomp : WebSocketDelegate{
             
             stompLog(type: .info, message: "Socket: Disconnected: \(reason) with code: \(code)")
             
-            self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromSocket)
-            
-            //** Disable auto ping
-            self.disableAutoPing()
-            
+            self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromSocket)    
         case .text(let string):
             stompLog(type: .info, message: "Socket: Received text")
             
@@ -564,8 +560,13 @@ extension SwiftStomp : WebSocketDelegate{
             stompLog(type: .info, message: "Socket: Pong data with length \(String(describing: data?.count))")
             
         case .viabilityChanged(let viability):
+            self.status =  viability ? .socketConnected : .socketDisconnected
             stompLog(type: .info, message: "Socket: Viability changed: \(viability)")
             self.delegate?.onSocketEvent(eventName: "viabilityChangedTo\(viability)", description: "Socket viability changed")
+
+            if self.autoReconnect, viability {
+                self.scheduleConnector()
+            }
             
         case .reconnectSuggested(let suggested):
             stompLog(type: .info, message: "Socket: Reconnect suggested: \(suggested)")
