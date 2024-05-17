@@ -596,6 +596,27 @@ extension SwiftStomp {
                 // Keep listening
                 self?.listen()
             }
+        case .error(let error):
+            self.status = .socketDisconnected
+            
+            stompLog(type: .socketError, message: "Socket: Error: \(error.debugDescription)")
+            self.delegate?.onError(swiftStomp: self, briefDescription: "Socket Error", fullDescription: error?.localizedDescription, receiptId: nil, type: .fromSocket)
+            
+            if self.autoReconnect{
+                self.scheduleConnector()
+            }
+        case .peerClosed:
+            self.status = .socketDisconnected
+            
+            stompLog(type: .info, message: "Socket: Peer closed")
+            
+            self.delegate?.onSocketEvent(eventName: "peerClosed", description: "Socket Closed by Peer")
+
+            if self.autoReconnect{
+                self.scheduleConnector()
+            }
+        @unknown default:
+            stompLog(type: .info, message: "Socket: Unexpected event kind: \(String(describing: event))")
         }
     }
 }
