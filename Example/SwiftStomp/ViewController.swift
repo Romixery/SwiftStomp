@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import SwiftStomp
 
 class ViewController: UIViewController {
@@ -81,6 +82,11 @@ class ViewController: UIViewController {
         swiftStomp.send(body: self.messageTextView.text, to: destinationTextField.text!, receiptId: "msg-\(messageIndex)", headers: [:])
         
         self.view.endEditing(true)
+    }
+    
+    @IBAction func triggerSwiftUIVersion(_ sender: Any) {
+        let swiftUIVC = UIHostingController(rootView: ContentView())
+        present(swiftUIVC, animated: true)
     }
     
 }

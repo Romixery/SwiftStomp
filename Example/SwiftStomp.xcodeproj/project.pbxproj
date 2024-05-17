@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3CA70AC419EBA31BEABD1566 /* Pods_SwiftStomp_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC8093327282DE87539508 /* Pods_SwiftStomp_Example.framework */; };
+		504ACC572BF70E4300741EC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC562BF70E4300741EC7 /* ContentView.swift */; };
+		504ACC592BF7922200741EC7 /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC582BF7922200741EC7 /* ContentViewViewModel.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		1AACAE8D55EAD993BDAB0EB4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		504ACC562BF70E4300741EC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		504ACC582BF7922200741EC7 /* ContentViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewViewModel.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwiftStomp_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftStomp_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		504ACC552BF70E3200741EC7 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				504ACC562BF70E4300741EC7 /* ContentView.swift */,
+				504ACC582BF7922200741EC7 /* ContentViewViewModel.swift */,
+			);
+			name = SwiftUI;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +101,7 @@
 		607FACD21AFB9204008FA782 /* Example for SwiftStomp */ = {
 			isa = PBXGroup;
 			children = (
+				504ACC552BF70E3200741EC7 /* SwiftUI */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -305,6 +319,8 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				504ACC572BF70E4300741EC7 /* ContentView.swift in Sources */,
+				504ACC592BF7922200741EC7 /* ContentViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

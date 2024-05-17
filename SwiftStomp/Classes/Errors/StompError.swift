@@ -6,19 +6,25 @@
 //
 
 public struct StompError: Error {
-    public let description: String
+    public let localizedDescription: String
     public let receiptId: String?
     public let type: StompErrorType
     
-    init(type: StompErrorType, receiptId: String?, description: String) {
-        self.description = description
+    init(type: StompErrorType, receiptId: String?, localizedDescription: String) {
+        self.localizedDescription = localizedDescription
         self.receiptId = receiptId
         self.type = type
     }
     
     init(error: Error, type: StompErrorType) {
-        self.description = error.localizedDescription
+        self.localizedDescription = error.localizedDescription
         self.receiptId = nil
         self.type = type
+    }
+}
+
+extension StompError: CustomStringConvertible {
+    public var description: String {
+        "StompError(\(type)) [receiptId: \(String(describing: receiptId))]: \(localizedDescription)"
     }
 }

@@ -94,6 +94,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-MZ-IkH">
+                                <rect key="frame" x="12" y="548" width="351" height="39"/>
+                                <color key="backgroundColor" systemColor="tableCellBlueTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Tm8-kq-ztv"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SwiftUI Version"/>
+                                <connections>
+                                    <action selector="triggerSwiftUIVersion:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pkk-Dg-SKQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -105,12 +118,15 @@
                             <constraint firstItem="vuv-m0-RmN" firstAttribute="centerY" secondItem="uFh-pH-oog" secondAttribute="centerY" id="DJ6-EQ-TEt"/>
                             <constraint firstItem="Qt6-Uy-RaQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="12" id="J7A-CU-zBM"/>
                             <constraint firstItem="Bhh-Un-867" firstAttribute="top" secondItem="j0n-aA-3rT" secondAttribute="bottom" constant="14.5" id="Jum-EA-IsN"/>
+                            <constraint firstItem="lNS-MZ-IkH" firstAttribute="top" secondItem="f2d-ig-Xcg" secondAttribute="bottom" constant="21" id="Qxz-rn-Gs6"/>
                             <constraint firstItem="f2d-ig-Xcg" firstAttribute="leading" secondItem="Bhh-Un-867" secondAttribute="leading" id="RdF-Wi-Ysk"/>
                             <constraint firstItem="Bhh-Un-867" firstAttribute="trailing" secondItem="j0n-aA-3rT" secondAttribute="trailing" id="VZy-8e-qJ3"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="trailing" secondItem="qJS-Ho-qQI" secondAttribute="trailing" id="WRN-Aa-aKV"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="leading" secondItem="qJS-Ho-qQI" secondAttribute="leading" id="Yp5-g9-15a"/>
                             <constraint firstItem="vuv-m0-RmN" firstAttribute="trailing" secondItem="Qt6-Uy-RaQ" secondAttribute="trailing" id="cWq-ef-zpF"/>
+                            <constraint firstAttribute="trailing" secondItem="lNS-MZ-IkH" secondAttribute="trailing" constant="12" id="ego-7n-Cy7"/>
                             <constraint firstItem="Qt6-Uy-RaQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="euJ-fX-6rb"/>
+                            <constraint firstItem="lNS-MZ-IkH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="12" id="hR0-LW-mlp"/>
                             <constraint firstItem="j0n-aA-3rT" firstAttribute="top" secondItem="qJS-Ho-qQI" secondAttribute="bottom" constant="10" id="iyC-Ic-Waq"/>
                             <constraint firstItem="f2d-ig-Xcg" firstAttribute="trailing" secondItem="j0n-aA-3rT" secondAttribute="trailing" id="mUn-cX-YWf"/>
                             <constraint firstItem="vuv-m0-RmN" firstAttribute="top" secondItem="Qt6-Uy-RaQ" secondAttribute="bottom" constant="12.5" id="u0D-Li-Ezj"/>
@@ -145,6 +161,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tableCellBlueTextColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

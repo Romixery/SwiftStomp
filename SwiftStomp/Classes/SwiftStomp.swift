@@ -492,7 +492,7 @@ fileprivate extension SwiftStomp{
             callbacksThread.async { [weak self] in
                 guard let self else { return }
                 self.delegate?.onError(swiftStomp: self, briefDescription: briefDescription, fullDescription: fullDescription, receiptId: receiptId, type: .fromStomp)
-                self._eventsUpstream.send(.error(error: .init(type: .fromStomp, receiptId: receiptId, description: briefDescription)))
+                self._eventsUpstream.send(.error(error: .init(type: .fromStomp, receiptId: receiptId, localizedDescription: briefDescription)))
             }
 
         case .connected:
