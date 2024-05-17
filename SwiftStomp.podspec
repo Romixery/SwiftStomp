@@ -17,9 +17,7 @@ Pod::Spec.new do |s|
  
   s.homepage         = 'https://github.com/Romixery/SwiftStomp'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Romixery' => 'topcoder.romixery@gmail.com' }
-  s.source           = { :git => 'https://github.com/Romixery/SwiftStomp.git', :tag => s.version.to_s }
-  s.author       = {'Ahmad Daneshvar' => 'http://attar.ai'}
+  s.author       = {'Romixery' => 'http://attar.ai'}
   s.source       = { :git => 'https://github.com/Romixery/SwiftStomp.git',  :tag => "#{s.version}"}
 
   s.ios.deployment_target = '13.0'
