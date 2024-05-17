@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     /// Outlets
     @IBOutlet weak var destinationTextField: UITextField!
     @IBOutlet weak var messageTextView: UITextView!
-    
+    @IBOutlet weak var logView: UITextView!
     
     /// Client
     private var swiftStomp : SwiftStomp!
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     }
     
     private func initStomp(){
-        let url = URL(string: "ws://192.168.1.6:8081/socket")!
+        let url = URL(string: "ws://localhost:8080/gs-guide-websocket")!
         
         self.swiftStomp = SwiftStomp(host: url, headers: ["Authorization" : "Bearer 5c09614a-22dc-4ccd-89c1-5c78338f45e9"])
         self.swiftStomp.enableLogging = true
@@ -94,9 +94,7 @@ extension ViewController : SwiftStompDelegate{
             print("Connected to stomp")
             
             //** Subscribe to topics or queues just after connect to the stomp!
-            swiftStomp.subscribe(to: "/topic/greeting")
-            swiftStomp.subscribe(to: "/topic/greeting2")
-            
+            swiftStomp.subscribe(to: "/topic/greetings")
         }
     }
     
@@ -112,6 +110,7 @@ extension ViewController : SwiftStompDelegate{
         
         if let message = message as? String{
             print("Message with id `\(messageId)` received at destination `\(destination)`:\n\(message)")
+            logView.text += "\(Date().formatted()) [id: \(messageId), at: \(destination)]: \(message)\n"
         } else if let message = message as? Data{
             print("Data message with id `\(messageId)` and binary length `\(message.count)` received at destination `\(destination)`")
         }
