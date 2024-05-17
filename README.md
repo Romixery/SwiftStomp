@@ -1,13 +1,42 @@
 # SwiftStomp
 
-## An elegent Stomp client for swift, based on iOS URLSessionWebSocketTask.
+## An elegent Stomp client for swift, based on iOS `URLSessionWebSocketTask`.
 
 <!-- [![CI Status](https://img.shields.io/travis/Romixery/SwiftStomp.svg?style=flat)](https://travis-ci.org/Romixery/SwiftStomp) -->
 [![Version](https://img.shields.io/cocoapods/v/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 [![License](https://img.shields.io/cocoapods/l/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftStomp.svg?style=flat)](https://cocoapods.org/pods/SwiftStomp)
 
-![SwiftStomp](https://raw.githubusercontent.com/Romixery/SwiftStomp/assets/Example/SwiftStomp/Assets/SS-Logo.jpg)
+|SwiftStomp|
+|---------|
+|<img width=400 src="https://raw.githubusercontent.com/Romixery/SwiftStomp/assets/Example/SwiftStomp/Assets/SS-Logo.jpg" />|
+|<img width=400 src="https://raw.githubusercontent.com/Romixery/SwiftStomp/assets/Example/SwiftStomp/Assets/Screenshot.gif" />|
+
+# TOC
+- [SwiftStomp](#swiftstomp)
+  - [An elegent Stomp client for swift, based on iOS `URLSessionWebSocketTask`.](#an-elegent-stomp-client-for-swift-based-on-ios-urlsessionwebsockettask)
+- [TOC](#toc)
+  - [Fetures](#fetures)
+  - [Usage](#usage)
+    - [Setup](#setup)
+    - [Delegate](#delegate)
+    - [Upstreams](#upstreams)
+    - [Connect](#connect)
+    - [Subscription](#subscription)
+    - [Send Message](#send-message)
+    - [Connection Status check](#connection-status-check)
+    - [Manual Pinging](#manual-pinging)
+    - [Auto Pinging](#auto-pinging)
+  - [Test Environment](#test-environment)
+  - [Example](#example)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [CocoaPods](#cocoapods)
+    - [Swift Package Manager](#swift-package-manager)
+  - [Author](#author)
+  - [Contributors](#contributors)
+  - [License](#license)
+
 
 ## Fetures
 - Easy to setup, Very light-weight
@@ -16,6 +45,7 @@
 - Send and receive `Data` and `Text`
 - Auto reconnect
 - Logging
+- Reactive programming ready.
 
 ## Usage
 
@@ -43,6 +73,48 @@ func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String,
 func onReceipt(swiftStomp : SwiftStomp, receiptId : String)
 
 func onError(swiftStomp : SwiftStomp, briefDescription : String, fullDescription : String?, receiptId : String?, type : StompErrorType)
+```
+
+### Upstreams
+In the case that you are more comfort to use `Combine` publishers, instead of delegate, SwiftStomp can report all `event`s, `message`s and `receiptId`s through upstreams. This functionality shines, especially, when you want to use SwiftStomp in the SwiftUI projects.
+
+```swift
+// ** Subscribe to events: [Connect/Disconnect/Errors]
+swiftStomp.eventsUpstream
+    .receive(on: RunLoop.main)
+    .sink { event in
+               
+        switch event {
+        case let .connected(type):
+            print("Connected with type: \(type)")
+        case .disconnected(_):
+            print("Disconnected with type: \(type)")
+        case let .error(error):
+            print("Error: \(error)")
+        }
+    }
+    .store(in: &subscriptions)
+
+// ** Subscribe to messages: [Text/Data]
+swiftStomp.messagesUpstream
+    .receive(on: RunLoop.main)
+    .sink { message in
+               
+        switch message {
+        case let .text(message, messageId, destination, _):
+            print("\(Date().formatted()) [id: \(messageId), at: \(destination)]: \(message)\n")
+        case let .data(data, messageId, destination, _):
+            print("Data message with id `\(messageId)` and binary length `\(data.count)` received at destination `\(destination)`")
+        }
+    }
+    .store(in: &subscriptions)
+
+// ** Subscribe to receipts: [Receipt IDs]
+swiftStomp.receiptUpstream
+    .sink { receiptId in
+        print("SwiftStop: Receipt received: \(receiptId)")
+    }
+    .store(in: &subscriptions)
 ```
 
 ### Connect
@@ -136,6 +208,10 @@ From Xcode 11, you can use [Swift Package Manager](https://swift.org/package-man
 ## Author
 
 Ahmad Daneshvar, romixery@gmail.com
+
+## Contributors
+Very special thanks to:
+@stuartcamerondeakin, @hunble, @aszter
 
 ## License
 
