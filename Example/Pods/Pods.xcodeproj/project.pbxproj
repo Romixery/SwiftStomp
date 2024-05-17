@@ -67,19 +67,19 @@
 		12ABDE957B4B3B3C6C36BD03A77E3D90 /* SwiftStomp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftStomp.release.xcconfig; sourceTree = "<group>"; };
 		12CF245DFE05AF46B6031E267DC6DA2C /* StompHeaderBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompHeaderBuilder.swift; sourceTree = "<group>"; };
 		1C6C9038A1AEA1DEA8586223EAE305C5 /* StompRequestFrame.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompRequestFrame.swift; sourceTree = "<group>"; };
-		21B03CA622E690725A6626C088E1D09F /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21B03CA622E690725A6626C088E1D09F /* ReachabilitySwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReachabilitySwift; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2544C3A1631BACBD2FC964E079CB6787 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		25EB98BC21B744B34F59F9EFE0BF0468 /* Pods-SwiftStomp_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftStomp_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		33DA4EA794D5DB7C796E27F2632E1B05 /* SwiftStomp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftStomp.modulemap; sourceTree = "<group>"; };
-		3488B095838EB9D5BBCB1DBDC76C4AD0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3488B095838EB9D5BBCB1DBDC76C4AD0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		35D05560FE89182EC91527E794A9B8F8 /* Pods-SwiftStomp_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftStomp_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3AAC6589A37973CE977695361767154C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		3BFBC34C29F79026C7CC37AC391BF6C1 /* SwiftStomp.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SwiftStomp.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3AAC6589A37973CE977695361767154C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		3BFBC34C29F79026C7CC37AC391BF6C1 /* SwiftStomp.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SwiftStomp.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		442FF4C11BBCB61204B5C6A3C5350EDA /* Pods-SwiftStomp_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftStomp_Example-dummy.m"; sourceTree = "<group>"; };
 		472D40FC0FBD81F28F5545432D233F9B /* StompErrorType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompErrorType.swift; sourceTree = "<group>"; };
 		4B1BB6A937C21B7F74CEB3C7D02743F1 /* SwiftStomp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftStomp-dummy.m"; sourceTree = "<group>"; };
 		5196BB866D3583072230D50FF4092BD5 /* ReachabilitySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.debug.xcconfig; sourceTree = "<group>"; };
-		61ACB5D1CC7ECF4898480B7D5395032E /* Pods_SwiftStomp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftStomp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61ACB5D1CC7ECF4898480B7D5395032E /* Pods-SwiftStomp_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SwiftStomp_Example"; path = Pods_SwiftStomp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C5DB6A3A53B0FEE1A395541800AB22 /* StompUpstreamMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompUpstreamMessage.swift; sourceTree = "<group>"; };
 		633B664E5BC75D92B48AA9318FC38B92 /* StompResponseFrame.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompResponseFrame.swift; sourceTree = "<group>"; };
 		651FA87D0326FCABF500EBE7CCB187A3 /* StompUpstreamEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompUpstreamEvent.swift; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		8963E12987DC02B1646A6A9035AEDB68 /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		8D2D9393A12321D45623A5D1A3DA8D8D /* StompDisconnectType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompDisconnectType.swift; sourceTree = "<group>"; };
 		8D8AD84459517ADB4944C881C4D02A1C /* SwiftStomp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftStomp.swift; path = SwiftStomp/Classes/SwiftStomp.swift; sourceTree = "<group>"; };
-		9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftStomp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftStomp; path = SwiftStomp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A3CDBF507E43B4A7EA07C8493D5427CE /* Pods-SwiftStomp_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftStomp_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		AE58D57ECF645FB23F37E35B4A90B900 /* StompCommandHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompCommandHeader.swift; sourceTree = "<group>"; };
 		B74F8742427DE91EA1458321B780356A /* StompConnectionStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StompConnectionStatus.swift; sourceTree = "<group>"; };
@@ -244,9 +244,9 @@
 		9C76B03688C1402213D681772BB3EE3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				61ACB5D1CC7ECF4898480B7D5395032E /* Pods_SwiftStomp_Example.framework */,
-				21B03CA622E690725A6626C088E1D09F /* Reachability.framework */,
-				9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp.framework */,
+				61ACB5D1CC7ECF4898480B7D5395032E /* Pods-SwiftStomp_Example */,
+				21B03CA622E690725A6626C088E1D09F /* ReachabilitySwift */,
+				9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +324,7 @@
 				D1118FC4BF2349E61D5A97571B401A8C /* Reachability.swift */,
 				7EA2352CB1A6DF17A65530B0C31D1B95 /* Support Files */,
 			);
+			name = ReachabilitySwift;
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
@@ -374,7 +375,7 @@
 			);
 			name = "Pods-SwiftStomp_Example";
 			productName = Pods_SwiftStomp_Example;
-			productReference = 61ACB5D1CC7ECF4898480B7D5395032E /* Pods_SwiftStomp_Example.framework */;
+			productReference = 61ACB5D1CC7ECF4898480B7D5395032E /* Pods-SwiftStomp_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		0B00B2C167CD783351BD1D00BD5AD1F8 /* ReachabilitySwift */ = {
@@ -392,7 +393,7 @@
 			);
 			name = ReachabilitySwift;
 			productName = Reachability;
-			productReference = 21B03CA622E690725A6626C088E1D09F /* Reachability.framework */;
+			productReference = 21B03CA622E690725A6626C088E1D09F /* ReachabilitySwift */;
 			productType = "com.apple.product-type.framework";
 		};
 		4EF39EA0BF2F2ACCC6A5344BC36BFFA6 /* SwiftStomp */ = {
@@ -411,7 +412,7 @@
 			);
 			name = SwiftStomp;
 			productName = SwiftStomp;
-			productReference = 9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp.framework */;
+			productReference = 9B33CA201A48848C93CA662AD188CF64 /* SwiftStomp */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -681,7 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -777,12 +778,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

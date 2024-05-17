@@ -18,8 +18,7 @@
   "platforms": {
     "ios": "13.0",
     "osx": "10.15",
-    "tvos": "13.0",
-    "watchos": "6.0"
+    "tvos": "13.0"
   },
   "swift_versions": "5.0",
   "source_files": "SwiftStomp/Classes/**/*",
