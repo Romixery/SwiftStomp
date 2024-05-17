@@ -9,83 +9,10 @@
 import Foundation
 import OSLog
 import Reachability
+import Combine
 
-fileprivate let NULL_CHAR = "\u{00}"
+let NULL_CHAR = "\u{00}"
 
-// MARK: - Enums
-public enum StompRequestFrame : String {
-    case connect = "CONNECT"
-    case send = "SEND"
-    case subscribe = "SUBSCRIBE"
-    case unsubscribe = "UNSUBSCRIBE"
-    case begin = "BEGIN"
-    case commit = "COMMIT"
-    case abort = "ABORT"
-    case ack = "ACK"
-    case nack = "NACK"
-    case disconnect = "DISCONNECT"
-}
-
-public enum StompResponseFrame : String{
-    case connected = "CONNECTED"
-    case message = "MESSAGE"
-    case receipt = "RECEIPT"
-    case error = "ERROR"
-}
-
-
-public enum StompAckMode : String{
-    case clientIndividual = "client-individual"
-    case client = "client"
-    case auto = "auto"
-}
-
-public enum StompCommonHeader : String{
-    case id = "id"
-    case host = "host"
-    case receipt = "receipt"
-    case session = "session"
-    case receiptId = "receipt-id"
-    case messageId = "message-id"
-    case destination = "destination"
-    case contentLength = "content-length"
-    case contentType = "content-type"
-    case ack = "ack"
-    case transaction = "transaction"
-    case subscription = "subscription"
-    case disconnected = "disconnected"
-    case heartBeat = "heart-beat"
-    case acceptVersion = "accept-version"
-    case message = "message"
-}
-
-public enum StompErrorType{
-    case fromSocket
-    case fromStomp
-}
-
-public enum StompDisconnectType{
-    case fromSocket
-    case fromStomp
-}
-
-public enum StompConnectType{
-    case toSocketEndpoint
-    case toStomp
-}
-
-public enum StompConnectionStatus{
-    case connecting
-    case socketDisconnected
-    case socketConnected
-    case fullyConnected
-}
-
-fileprivate enum StompLogType : String{
-    case info = "INFO"
-    case socketError = "SOCKET ERROR"
-    case stompError = "STOMP ERROR"
-}
 
 // MARK: - SwiftStomp
 public class SwiftStomp: NSObject {
@@ -110,7 +37,24 @@ public class SwiftStomp: NSObject {
     fileprivate var autoPingEnabled = false
 
     public weak var delegate: SwiftStompDelegate?
-
+    
+    /// Streams
+    fileprivate var _eventsUpstream = PassthroughSubject<StompUpstreamEvent, Never>()
+    fileprivate var _messagesUpstream = PassthroughSubject<StompUpstreamMessage, Never>()
+    fileprivate var _receiptsUpstream = PassthroughSubject<String, Never>()
+    
+    public var eventsUpstream: AnyPublisher<StompUpstreamEvent, Never> {
+        _eventsUpstream.eraseToAnyPublisher()
+    }
+    
+    public var messagesUpstream: AnyPublisher<StompUpstreamMessage, Never> {
+        _messagesUpstream.eraseToAnyPublisher()
+    }
+    
+    public var receiptUpstream: AnyPublisher<String, Never> {
+        _receiptsUpstream.eraseToAnyPublisher()
+    }
+    
     public var enableLogging = false
     public var isConnected : Bool {
         return self.status == .fullyConnected
@@ -464,8 +408,8 @@ fileprivate extension SwiftStomp{
         //** Deserialize frame
         do{
             frame = try StompFrame(withSerializedString: text)
-        }catch let ex{
-            stompLog(type: .stompError, message: "Process frame error: \(ex.localizedDescription)")
+        }catch {
+            stompLog(type: .stompError, message: "Process frame error: \(error.localizedDescription)")
             return
         }
 
@@ -481,6 +425,27 @@ fileprivate extension SwiftStomp{
             callbacksThread.async { [weak self] in
                 guard let self else { return }
                 self.delegate?.onMessageReceived(swiftStomp: self, message: frame.body, messageId: messageId, destination: destination, headers: frame.headers)
+                
+                // ** Broadcast through upstream
+                if let stringBody = frame.body as? String {
+                    self._messagesUpstream.send(
+                        .text(
+                            message: stringBody,
+                            messageId: messageId,
+                            destination: destination,
+                            headers: frame.headers
+                        )
+                    )
+                } else if let dataBody = frame.body as? Data {
+                    self._messagesUpstream.send(
+                        .data(
+                            data: dataBody,
+                            messageId: messageId,
+                            destination: destination,
+                            headers: frame.headers
+                        )
+                    )
+                }
             }
 
         case .receipt:
@@ -495,6 +460,7 @@ fileprivate extension SwiftStomp{
             callbacksThread.async { [weak self] in
                 guard let self else { return }
                 self.delegate?.onReceipt(swiftStomp: self, receiptId: receiptId)
+                self._receiptsUpstream.send(receiptId)
             }
 
             if receiptId == "disconnect/safe"{
@@ -503,6 +469,7 @@ fileprivate extension SwiftStomp{
                 callbacksThread.async { [weak self] in
                     guard let self else { return }
                     self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromStomp)
+                    self._eventsUpstream.send(.disconnected(type: .fromStomp))
                 }
 
                 self.webSocketTask?.cancel(with: .goingAway, reason: nil)
@@ -525,6 +492,7 @@ fileprivate extension SwiftStomp{
             callbacksThread.async { [weak self] in
                 guard let self else { return }
                 self.delegate?.onError(swiftStomp: self, briefDescription: briefDescription, fullDescription: fullDescription, receiptId: receiptId, type: .fromStomp)
+                self._eventsUpstream.send(.error(error: .init(type: .fromStomp, receiptId: receiptId, description: briefDescription)))
             }
 
         case .connected:
@@ -535,6 +503,7 @@ fileprivate extension SwiftStomp{
             callbacksThread.async { [weak self] in
                 guard let self else { return }
                 self.delegate?.onConnect(swiftStomp: self, connectType: .toStomp)
+                self._eventsUpstream.send(.connected(type: .toStomp))
             }
         default:
             stompLog(type: .info, message: "Stomp: Un-Processable content: \(text)")
@@ -644,6 +613,7 @@ extension SwiftStomp: URLSessionWebSocketDelegate {
         callbacksThread.async { [weak self] in
             guard let self else { return }
             self.delegate?.onConnect(swiftStomp: self, connectType: .toSocketEndpoint)
+            self._eventsUpstream.send(.connected(type: .toSocketEndpoint))
         }
 
         self.stompConnect()
@@ -661,13 +631,18 @@ extension SwiftStomp: URLSessionWebSocketDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        stompLog(type: .socketError, message: "Socket: Error: \(error.debugDescription)")
+        guard let error else {
+            return
+        }
+        
+        stompLog(type: .socketError, message: "Socket: Error: \(error.localizedDescription)")
 
         handleDisconnect()
 
         callbacksThread.async { [weak self] in
             guard let self else { return }
-            self.delegate?.onError(swiftStomp: self, briefDescription: "Socket Error", fullDescription: error?.localizedDescription, receiptId: nil, type: .fromSocket)
+            self.delegate?.onError(swiftStomp: self, briefDescription: "Socket Error", fullDescription: error.localizedDescription, receiptId: nil, type: .fromSocket)
+            self._eventsUpstream.send(.error(error: .init(error: error, type: .fromSocket)))
         }
     }
 
@@ -683,6 +658,7 @@ extension SwiftStomp: URLSessionWebSocketDelegate {
         callbacksThread.async { [weak self] in
             guard let self else { return }
             self.delegate?.onDisconnect(swiftStomp: self, disconnectType: .fromSocket)
+            self._eventsUpstream.send(.disconnected(type: .fromSocket))
         }
 
         if self.autoReconnect{
@@ -704,160 +680,3 @@ public protocol SwiftStompDelegate: AnyObject{
 
     func onError(swiftStomp : SwiftStomp, briefDescription : String, fullDescription : String?, receiptId : String?, type : StompErrorType)
 }
-
-// MARK: - Stomp Frame Class
-fileprivate class StompFrame<T : RawRepresentable> where T.RawValue == String{
-    var name : T!
-    var headers = [String : String]()
-    var body : Any?
-
-    init (name : T, headers : [String : String] = [:]){
-        self.name = name
-        self.headers = headers
-    }
-
-    convenience init <X : Encodable>(name : T, headers : [String : String] = [:], encodableBody : X, jsonDateEncodingStrategy : JSONEncoder.DateEncodingStrategy = .iso8601){
-        self.init(name: name, headers: headers)
-
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = jsonDateEncodingStrategy
-
-        if let jsonData = try? jsonEncoder.encode(encodableBody){
-            self.body = String(data: jsonData, encoding: .utf8)
-            self.headers[StompCommonHeader.contentType.rawValue] = "application/json;charset=UTF-8"
-        }
-    }
-
-    convenience init(name : T, headers : [String : String] = [:], stringBody : String){
-        self.init(name: name, headers: headers)
-
-        self.body = stringBody
-        if self.headers[StompCommonHeader.contentType.rawValue] == nil{
-            self.headers[StompCommonHeader.contentType.rawValue] = "text/plain"
-        }
-    }
-
-    convenience init(name : T, headers : [String : String] = [:], dataBody : Data){
-        self.init(name: name, headers: headers)
-
-        self.body = dataBody
-    }
-
-    init(withSerializedString frame : String) throws{
-        try deserialize(frame: frame)
-    }
-
-    func serialize() -> String{
-        var frame = name.rawValue + "\n"
-
-        //** Headers
-        for (hKey, hVal) in headers{
-            frame += "\(hKey):\(hVal)\n"
-        }
-
-        //** Body
-        if body != nil{
-            if let stringBody = body as? String{
-                frame += "\n\(stringBody)"
-            } else if let dataBody = body as? Data{
-                let dataAsBase64 = dataBody.base64EncodedString()
-                frame += "\n\(dataAsBase64)"
-            }
-        } else {
-            frame += "\n"
-        }
-
-        //** Add NULL char
-        frame += NULL_CHAR
-
-        return frame
-    }
-
-    func deserialize(frame : String) throws{
-        var lines = frame.components(separatedBy: "\n")
-
-        //** Remove first if was empty string
-        if let firstLine = lines.first, firstLine.isEmpty {
-            lines.removeFirst()
-        }
-
-        //** Parse Command
-        if let command = StompRequestFrame(rawValue: lines.first ?? ""){
-            self.name = (command as! T)
-        } else if let command = StompResponseFrame(rawValue: lines.first ?? ""){
-            self.name = (command as! T)
-        } else {
-            throw InvalidStompCommandError()
-        }
-
-        //** Remove Command
-        lines.removeFirst()
-
-        //** Parse Headers
-        while let line = lines.first, !line.isEmpty {
-            let headerParts = line.components(separatedBy: ":")
-
-            if headerParts.count != 2{
-                break
-            }
-
-            self.headers[headerParts[0].trimmingCharacters(in: .whitespacesAndNewlines)] = headerParts[1].trimmingCharacters(in: .whitespacesAndNewlines)
-
-            lines.removeFirst()
-        }
-
-        //** Remove the blank line between the headers and body
-        if let firstLine = lines.first, firstLine.isEmpty {
-            lines.removeFirst()
-        }
-
-        //** Parse body
-        var body = lines.joined(separator: "\n")
-
-        if body.hasSuffix("\0"){
-            body = body.replacingOccurrences(of: "\0", with: "")
-        }
-
-        if let data = Data(base64Encoded: body){
-            self.body = data
-        } else {
-            self.body = body
-        }
-    }
-
-    func getCommonHeader(_ header : StompCommonHeader) -> String?{
-        return self.headers[header.rawValue]
-    }
-}
-
-// MARK: - Header builder
-public class StompHeaderBuilder{
-    private var headers = [String : String]()
-
-    static func add(key : StompCommonHeader, value : Any) -> StompHeaderBuilder{
-        return StompHeaderBuilder(key: key.rawValue, value: value)
-    }
-
-    private init(key : String, value : Any){
-        self.headers[key] = "\(value)"
-    }
-
-    func add(key : StompCommonHeader, value : Any) -> StompHeaderBuilder{
-        self.headers[key.rawValue] = "\(value)"
-
-        return self
-    }
-
-    var get : [String : String]{
-        return self.headers
-    }
-}
-
-// MARK: - Errors
-public class InvalidStompCommandError : Error{
-
-    var localizedDescription: String {
-        return "Invalid STOMP command"
-    }
-}
-

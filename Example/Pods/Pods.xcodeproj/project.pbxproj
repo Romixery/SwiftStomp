@@ -10,6 +10,21 @@
 		17DE87344CAD319DE6AA0F7BE1BA10C7 /* ReachabilitySwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF778BEFC7721E16D5F02EF17376689 /* ReachabilitySwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		210DD290122BB0C7A0E83DC5148D724E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2B117F7A3CB312FF54BFF9D46B0180 /* Foundation.framework */; };
 		4C6A10FA290E63347D1B47A4AE7F526A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2B117F7A3CB312FF54BFF9D46B0180 /* Foundation.framework */; };
+		504ACC282BF6F68600741EC7 /* StompRequestFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC262BF6F68600741EC7 /* StompRequestFrame.swift */; };
+		504ACC2B2BF6F6A700741EC7 /* StompResponseFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC292BF6F6A700741EC7 /* StompResponseFrame.swift */; };
+		504ACC2E2BF6F6C400741EC7 /* StompAckMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC2C2BF6F6C400741EC7 /* StompAckMode.swift */; };
+		504ACC312BF6F6DC00741EC7 /* StompCommandHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC2F2BF6F6DC00741EC7 /* StompCommandHeader.swift */; };
+		504ACC342BF6F6F200741EC7 /* StompErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC322BF6F6F200741EC7 /* StompErrorType.swift */; };
+		504ACC372BF6F70100741EC7 /* StompDisconnectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC352BF6F70100741EC7 /* StompDisconnectType.swift */; };
+		504ACC3A2BF6F71B00741EC7 /* StompConnectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC382BF6F71B00741EC7 /* StompConnectType.swift */; };
+		504ACC3D2BF6F73000741EC7 /* StompConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC3B2BF6F73000741EC7 /* StompConnectionStatus.swift */; };
+		504ACC402BF6F74B00741EC7 /* StompLogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC3E2BF6F74B00741EC7 /* StompLogType.swift */; };
+		504ACC432BF6F77C00741EC7 /* StompUpstreamMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC412BF6F77C00741EC7 /* StompUpstreamMessage.swift */; };
+		504ACC472BF6F94300741EC7 /* StompFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC452BF6F94300741EC7 /* StompFrame.swift */; };
+		504ACC4A2BF6F99F00741EC7 /* StompHeaderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC482BF6F99F00741EC7 /* StompHeaderBuilder.swift */; };
+		504ACC4D2BF6FC6500741EC7 /* StompUpstreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC4B2BF6FC6500741EC7 /* StompUpstreamEvent.swift */; };
+		504ACC512BF6FE8A00741EC7 /* InvalidStompCommandError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC4F2BF6FE8A00741EC7 /* InvalidStompCommandError.swift */; };
+		504ACC542BF6FFA200741EC7 /* StompError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC522BF6FFA200741EC7 /* StompError.swift */; };
 		5433D9B1A7004CEBF4CA2F1FEEBCAB38 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2544C3A1631BACBD2FC964E079CB6787 /* CoreTelephony.framework */; };
 		5C29D180D52BC57EE1674EE7D29F5A81 /* SwiftStomp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC6F79753DB862A510CD313F5218D59 /* SwiftStomp.swift */; };
 		899ECE89E905625730B7070CC0941F84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2B117F7A3CB312FF54BFF9D46B0180 /* Foundation.framework */; };
@@ -60,6 +75,21 @@
 		35D05560FE89182EC91527E794A9B8F8 /* Pods-SwiftStomp_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftStomp_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4023886470323991EC07D2198E0873A1 /* SwiftStomp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftStomp-Info.plist"; sourceTree = "<group>"; };
 		442FF4C11BBCB61204B5C6A3C5350EDA /* Pods-SwiftStomp_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftStomp_Example-dummy.m"; sourceTree = "<group>"; };
+		504ACC262BF6F68600741EC7 /* StompRequestFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompRequestFrame.swift; sourceTree = "<group>"; };
+		504ACC292BF6F6A700741EC7 /* StompResponseFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompResponseFrame.swift; sourceTree = "<group>"; };
+		504ACC2C2BF6F6C400741EC7 /* StompAckMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompAckMode.swift; sourceTree = "<group>"; };
+		504ACC2F2BF6F6DC00741EC7 /* StompCommandHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompCommandHeader.swift; sourceTree = "<group>"; };
+		504ACC322BF6F6F200741EC7 /* StompErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompErrorType.swift; sourceTree = "<group>"; };
+		504ACC352BF6F70100741EC7 /* StompDisconnectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompDisconnectType.swift; sourceTree = "<group>"; };
+		504ACC382BF6F71B00741EC7 /* StompConnectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompConnectType.swift; sourceTree = "<group>"; };
+		504ACC3B2BF6F73000741EC7 /* StompConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompConnectionStatus.swift; sourceTree = "<group>"; };
+		504ACC3E2BF6F74B00741EC7 /* StompLogType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompLogType.swift; sourceTree = "<group>"; };
+		504ACC412BF6F77C00741EC7 /* StompUpstreamMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompUpstreamMessage.swift; sourceTree = "<group>"; };
+		504ACC452BF6F94300741EC7 /* StompFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompFrame.swift; sourceTree = "<group>"; };
+		504ACC482BF6F99F00741EC7 /* StompHeaderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompHeaderBuilder.swift; sourceTree = "<group>"; };
+		504ACC4B2BF6FC6500741EC7 /* StompUpstreamEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompUpstreamEvent.swift; sourceTree = "<group>"; };
+		504ACC4F2BF6FE8A00741EC7 /* InvalidStompCommandError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidStompCommandError.swift; sourceTree = "<group>"; };
+		504ACC522BF6FFA200741EC7 /* StompError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompError.swift; sourceTree = "<group>"; };
 		5196BB866D3583072230D50FF4092BD5 /* ReachabilitySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.debug.xcconfig; sourceTree = "<group>"; };
 		597847BFD11F5460BDD68330284BE081 /* SwiftStomp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftStomp.release.xcconfig; sourceTree = "<group>"; };
 		61ACB5D1CC7ECF4898480B7D5395032E /* Pods_SwiftStomp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftStomp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +177,45 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		504ACC252BF6F64B00741EC7 /* Enumurations */ = {
+			isa = PBXGroup;
+			children = (
+				504ACC262BF6F68600741EC7 /* StompRequestFrame.swift */,
+				504ACC292BF6F6A700741EC7 /* StompResponseFrame.swift */,
+				504ACC2C2BF6F6C400741EC7 /* StompAckMode.swift */,
+				504ACC2F2BF6F6DC00741EC7 /* StompCommandHeader.swift */,
+				504ACC322BF6F6F200741EC7 /* StompErrorType.swift */,
+				504ACC352BF6F70100741EC7 /* StompDisconnectType.swift */,
+				504ACC382BF6F71B00741EC7 /* StompConnectType.swift */,
+				504ACC3B2BF6F73000741EC7 /* StompConnectionStatus.swift */,
+				504ACC3E2BF6F74B00741EC7 /* StompLogType.swift */,
+				504ACC412BF6F77C00741EC7 /* StompUpstreamMessage.swift */,
+				504ACC4B2BF6FC6500741EC7 /* StompUpstreamEvent.swift */,
+			);
+			name = Enumurations;
+			path = SwiftStomp/Classes/Enumurations;
+			sourceTree = "<group>";
+		};
+		504ACC442BF6F91F00741EC7 /* FrameHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				504ACC452BF6F94300741EC7 /* StompFrame.swift */,
+				504ACC482BF6F99F00741EC7 /* StompHeaderBuilder.swift */,
+			);
+			name = FrameHelpers;
+			path = SwiftStomp/Classes/FrameHelpers;
+			sourceTree = "<group>";
+		};
+		504ACC4E2BF6FE7000741EC7 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				504ACC4F2BF6FE8A00741EC7 /* InvalidStompCommandError.swift */,
+				504ACC522BF6FFA200741EC7 /* StompError.swift */,
+			);
+			name = Errors;
+			path = SwiftStomp/Classes/Errors;
+			sourceTree = "<group>";
+		};
 		5D0AA215FB49F5F6E11902E9E88FDB66 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +268,9 @@
 		9E9C985FB12EF434AE8448AC044F7061 /* SwiftStomp */ = {
 			isa = PBXGroup;
 			children = (
+				504ACC4E2BF6FE7000741EC7 /* Errors */,
+				504ACC442BF6F91F00741EC7 /* FrameHelpers */,
+				504ACC252BF6F64B00741EC7 /* Enumurations */,
 				0DC6F79753DB862A510CD313F5218D59 /* SwiftStomp.swift */,
 				D34FD6021701BEA9D63045DD0E42B02D /* Pod */,
 				06CA939E3973953123C8EF44A4AD459A /* Support Files */,
@@ -350,6 +422,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					04CF9B8BDE92EA9A7EAF573E5DB3CC35 = {
+						LastSwiftMigration = 1540;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -409,8 +486,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504ACC3A2BF6F71B00741EC7 /* StompConnectType.swift in Sources */,
+				504ACC4D2BF6FC6500741EC7 /* StompUpstreamEvent.swift in Sources */,
+				504ACC312BF6F6DC00741EC7 /* StompCommandHeader.swift in Sources */,
+				504ACC2E2BF6F6C400741EC7 /* StompAckMode.swift in Sources */,
+				504ACC402BF6F74B00741EC7 /* StompLogType.swift in Sources */,
+				504ACC2B2BF6F6A700741EC7 /* StompResponseFrame.swift in Sources */,
+				504ACC372BF6F70100741EC7 /* StompDisconnectType.swift in Sources */,
+				504ACC432BF6F77C00741EC7 /* StompUpstreamMessage.swift in Sources */,
+				504ACC3D2BF6F73000741EC7 /* StompConnectionStatus.swift in Sources */,
+				504ACC4A2BF6F99F00741EC7 /* StompHeaderBuilder.swift in Sources */,
+				504ACC542BF6FFA200741EC7 /* StompError.swift in Sources */,
+				504ACC282BF6F68600741EC7 /* StompRequestFrame.swift in Sources */,
 				5C29D180D52BC57EE1674EE7D29F5A81 /* SwiftStomp.swift in Sources */,
+				504ACC512BF6FE8A00741EC7 /* InvalidStompCommandError.swift in Sources */,
 				E12150F171CDCBF069DC0470D092AE46 /* SwiftStomp-dummy.m in Sources */,
+				504ACC472BF6F94300741EC7 /* StompFrame.swift in Sources */,
+				504ACC342BF6F6F200741EC7 /* StompErrorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +766,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -696,6 +789,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -708,6 +803,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -730,6 +826,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
