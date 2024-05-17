@@ -2,7 +2,7 @@
   "name": "SwiftStomp",
   "version": "1.2.0",
   "summary": "An elegant Stomp client for iOS.",
-  "description": "SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.\nIt's based on URLSessionWebSocketTask.",
+  "description": "SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.\nIt's based on `URLSessionWebSocketTask`.",
   "homepage": "https://github.com/Romixery/SwiftStomp",
   "license": {
     "type": "MIT",
