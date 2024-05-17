@@ -76,7 +76,7 @@ func onError(swiftStomp : SwiftStomp, briefDescription : String, fullDescription
 ```
 
 ### Upstreams
-In the case that you are more comfort to use `Combine` publishers, instead of delegate, SwiftStomp can report all `event`s, `message`s and `receiptId`s through upstreams. This functionality shines, especially, when you want to use SwiftStomp in the SwiftUI projects.
+In the case that you are more comfort to use `Combine` publishers, instead of delegate, SwiftStomp can report all `event`s, `message`s and `receiptId`s through upstreams. This functionality shines, especially, when you want to use SwiftStomp in the SwiftUI projects. Please check the example project, to see how we can use upstreams, in SwiftUI projects.
 
 ```swift
 // ** Subscribe to events: [Connect/Disconnect/Errors]

@@ -574,49 +574,28 @@ extension SwiftStomp {
             switch result {
             case .failure(let error):
                 self?.stompLog(type: .socketError, message: "Socket listen: Error: \(error)")
-
+                
                 self?.callbacksThread.async { [weak self] in
                     guard let self else { return }
                     self.delegate?.onError(swiftStomp: self, briefDescription: "Stomp Error", fullDescription: error.localizedDescription, receiptId: nil, type: .fromStomp)
                 }
-
+                
             case .success(let message):
                 switch message {
                 case .string(let text):
                     self?.stompLog(type: .info, message: "Socket: Received text")
                     self?.processReceivedSocketText(text: text)
-
+                    
                 case .data(let data):
                     self?.stompLog(type: .info, message: "Socket: Received data: \(data.count)")
-
+                    
                 default:
                     break
                 }
-
+                
                 // Keep listening
                 self?.listen()
             }
-        case .error(let error):
-            self.status = .socketDisconnected
-            
-            stompLog(type: .socketError, message: "Socket: Error: \(error.debugDescription)")
-            self.delegate?.onError(swiftStomp: self, briefDescription: "Socket Error", fullDescription: error?.localizedDescription, receiptId: nil, type: .fromSocket)
-            
-            if self.autoReconnect{
-                self.scheduleConnector()
-            }
-        case .peerClosed:
-            self.status = .socketDisconnected
-            
-            stompLog(type: .info, message: "Socket: Peer closed")
-            
-            self.delegate?.onSocketEvent(eventName: "peerClosed", description: "Socket Closed by Peer")
-
-            if self.autoReconnect{
-                self.scheduleConnector()
-            }
-        @unknown default:
-            stompLog(type: .info, message: "Socket: Unexpected event kind: \(String(describing: event))")
         }
     }
 }
