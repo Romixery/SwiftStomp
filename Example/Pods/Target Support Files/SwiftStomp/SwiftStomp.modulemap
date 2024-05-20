@@ -1,6 +1,0 @@
-framework module SwiftStomp {
-  umbrella header "SwiftStomp-umbrella.h"
-
-  export *
-  module * { export * }
-}

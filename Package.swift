@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "SwiftStomp", targets: ["SwiftStomp"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ashleymills/Reachability.swift", .upToNextMajor(from: "5.0.0"))
+        .package(url: "https://github.com/ashleymills/Reachability.swift", .upToNextMajor(from: "5.2.1"))
     ],
     targets: [
         .target(

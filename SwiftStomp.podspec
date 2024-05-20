@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftStomp'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'An elegant Stomp client for iOS.'
   s.description      = <<-DESC
   SwiftStomp is and elegant, light-weight and easy-to-use STOMP (Simple Text Oriented Messaging Protocol) client for iOS.
@@ -32,5 +32,5 @@ Pod::Spec.new do |s|
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.dependency 'ReachabilitySwift', '~> 5.0.0'
+  s.dependency 'ReachabilitySwift', '~> 5.2.1'
 end

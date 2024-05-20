@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CA70AC419EBA31BEABD1566 /* Pods_SwiftStomp_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEC8093327282DE87539508 /* Pods_SwiftStomp_Example.framework */; };
 		504ACC572BF70E4300741EC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC562BF70E4300741EC7 /* ContentView.swift */; };
 		504ACC592BF7922200741EC7 /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ACC582BF7922200741EC7 /* ContentViewViewModel.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -42,11 +41,8 @@
 		607FACE51AFB9204008FA782 /* SwiftStomp_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStomp_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		97ED2BDE0431ABE6D433DBFC /* Pods-SwiftStomp_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftStomp_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwiftStomp_Example/Pods-SwiftStomp_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A35E2F92E265CB7AD0D8E277 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AD62C6B8B53BEBDBE16F7A85 /* SwiftStomp.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftStomp.podspec; path = ../SwiftStomp.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BD9C2E892BB438E99A8A56C6 /* Pods-SwiftStomp_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftStomp_Example.release.xcconfig"; path = "Target Support Files/Pods-SwiftStomp_Example/Pods-SwiftStomp_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FDEC8093327282DE87539508 /* Pods_SwiftStomp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftStomp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CA70AC419EBA31BEABD1566 /* Pods_SwiftStomp_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +80,6 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				647F9CA2A2FA56145DABC5F5 /* Pods */,
-				FFA4094131AE34AC70D2788C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,18 +145,8 @@
 		647F9CA2A2FA56145DABC5F5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				97ED2BDE0431ABE6D433DBFC /* Pods-SwiftStomp_Example.debug.xcconfig */,
-				BD9C2E892BB438E99A8A56C6 /* Pods-SwiftStomp_Example.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		FFA4094131AE34AC70D2788C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FDEC8093327282DE87539508 /* Pods_SwiftStomp_Example.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,11 +156,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwiftStomp_Example" */;
 			buildPhases = (
-				0C8011B680E7A9EF4BA80906 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				C4C6CE09FE7C0B7A6CC7B92F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,51 +248,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0C8011B680E7A9EF4BA80906 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftStomp_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C4C6CE09FE7C0B7A6CC7B92F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftStomp_Example/Pods-SwiftStomp_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftStomp/SwiftStomp.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftStomp.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftStomp_Example/Pods-SwiftStomp_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		607FACCC1AFB9204008FA782 /* Sources */ = {
@@ -463,7 +400,6 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97ED2BDE0431ABE6D433DBFC /* Pods-SwiftStomp_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 232779VTR2;
@@ -480,7 +416,6 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD9C2E892BB438E99A8A56C6 /* Pods-SwiftStomp_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 232779VTR2;
