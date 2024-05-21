@@ -186,7 +186,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-- iOS 10 or above
+- iOS 13 or above, macOS 10.15 or above, tvOS 13 or above
 
 ## Installation
 
